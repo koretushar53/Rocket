@@ -19,8 +19,8 @@ export default function Root({ children }: { children: ReactNode }) {
         */}
         <ScrollViewStyleReset />
 
-        {/* Using raw CSS styles as an escape-hatch to ensure the background color never flickers in dark-mode. */}
-        <style dangerouslySetInnerHTML={{ __html: responsiveBackground }} />
+        <meta name="theme-color" content="#08080D" />
+        <style dangerouslySetInnerHTML={{ __html: documentStyles }} />
         {/* Add any additional <head> elements that you want globally available on web... */}
       </head>
       <body>{children}</body>
@@ -28,12 +28,13 @@ export default function Root({ children }: { children: ReactNode }) {
   );
 }
 
-const responsiveBackground = `
-body {
-  background-color: #fff;
+const documentStyles = `
+html, body, #root {
+  min-height: 100%;
+  background-color: #08080D;
 }
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #000;
-  }
+body {
+  color: #F7F4FA;
+  margin: 0;
+  overscroll-behavior: none;
 }`;
